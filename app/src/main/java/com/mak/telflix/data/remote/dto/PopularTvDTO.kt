@@ -6,8 +6,20 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class PopularTvDTO(
+    @Json(name = "page")
+    val page: Int,
+    @Json(name = "total_pages")
+    val totalPages: Int,
+    @Json(name = "total_results")
+    val totalResults: Int,
+    @Json(name = "results")
+    val results: List<TvDTO>
+)
+
+@JsonClass(generateAdapter = true)
+data class TvDTO(
     @Json(name = "backdrop_path")
-    val backdropPath: String,
+    val backdropPath: String?,
     @Json(name = "first_air_date")
     val firstAirDate: String,
     @Json(name = "genre_ids")

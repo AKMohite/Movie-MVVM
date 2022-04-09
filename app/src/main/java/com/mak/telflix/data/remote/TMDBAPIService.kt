@@ -1,7 +1,6 @@
 package com.mak.telflix.data.remote
 
 import com.mak.telflix.data.remote.dto.PopularTvDTO
-import com.mak.telflix.data.remote.dto.SuccessResponse
 import com.mak.telflix.domain.util.TFConstants.API_GET_POPULAR_TV
 import com.mak.telflix.domain.util.TFConstants.QUERY_LANGUAGE
 import com.mak.telflix.domain.util.TFConstants.QUERY_PAGE
@@ -15,5 +14,5 @@ interface TMDBAPIService {
     fun getPopularTvSeries(
         @Query(QUERY_LANGUAGE) language: String = "en-US",
         @Query(QUERY_PAGE) page: Int,
-    ): Single<SuccessResponse<PopularTvDTO>>
+    ): Single<PopularTvDTO>
 }
