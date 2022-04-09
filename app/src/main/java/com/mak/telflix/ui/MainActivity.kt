@@ -1,4 +1,4 @@
-package com.mak.telflix
+package com.mak.telflix.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
