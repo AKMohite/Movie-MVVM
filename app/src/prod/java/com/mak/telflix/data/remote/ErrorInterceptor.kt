@@ -4,6 +4,7 @@ import com.mak.telflix.domain.util.TFConstants.API_KEY
 import okhttp3.Interceptor
 import okhttp3.Response
 
+private const val API_KEY = BuildConfig.TMDBAPIKey
 class ErrorInterceptor: Interceptor {
 
     @Throws(Throwable::class)
