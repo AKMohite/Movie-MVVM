@@ -1,5 +1,6 @@
 package com.example.moviemvvm.data.api
 
+import android.util.Log
 import com.example.moviemvvm.BuildConfig
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -18,17 +19,22 @@ object TMDBMovieClient {
     fun getClient() : TMDBAPIInterface{
         val requestInterceptor = Interceptor{ chain ->
 
-            val url = chain.request().url()
-                .newBuilder()
-                .addQueryParameter("api_key", API_KEY)
-                .build()
+            try {
+                val url = chain.request().url()
+                    .newBuilder()
+                    .addQueryParameter("api_key", API_KEY)
+                    .build()
 
-            val request = chain.request()
-                .newBuilder()
-                .url(url)
-                .build()
+                val request = chain.request()
+                    .newBuilder()
+                    .url(url)
+                    .build()
 
-            return@Interceptor chain.proceed(request)
+                return@Interceptor chain.proceed(request)
+            } catch (e: Throwable) {
+                Log.e(null, "getClient: ", e)
+                return@Interceptor null
+            }
         }
 
         val okHttpClient = OkHttpClient.Builder()

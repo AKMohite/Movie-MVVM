@@ -27,7 +27,7 @@ class MovieDataSource(private val apiService: TMDBAPIInterface, private val comp
                     networkState.postValue(NetworkState.LOADED)
                 },{
                     networkState.postValue(NetworkState.ERROR)
-                    Log.e("MovieDataSource", it.message)
+                    Log.e("MovieDataSource", it.message!!)
                 })
         )
     }
@@ -47,7 +47,7 @@ class MovieDataSource(private val apiService: TMDBAPIInterface, private val comp
                     }
                 },{
                     networkState.postValue(NetworkState.ERROR)
-                    Log.e("MovieDataSource", it.message)
+                    Log.e("MovieDataSource", it.message!!)
                 })
         )
     }

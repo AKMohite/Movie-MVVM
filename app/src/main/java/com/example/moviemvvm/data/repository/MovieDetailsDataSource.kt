@@ -35,7 +35,7 @@ class MovieDetailsDataSource (private val apiService: TMDBAPIInterface, private 
                     },
                     {
                         _networkState.postValue(NetworkState.ERROR)
-                        Log.e("MovieDetailsDataSource", it.message)
+                        Log.e("MovieDetailsDataSource", it.message!!)
                     }
                 )
         )
