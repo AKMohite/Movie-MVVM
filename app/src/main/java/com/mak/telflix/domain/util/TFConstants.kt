@@ -13,4 +13,5 @@ object TFConstants {
 //    domain
     const val DEFAULT_LANGUAGE = "en-US"
     const val DEFAULT_PAGE = 1
+    const val DEFAULT_PAGE_SIZE = 20
 }
