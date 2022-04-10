@@ -9,4 +9,8 @@ object TFConstants {
     const val QUERY_PAGE = "page"
 
 //    data:local
+
+//    domain
+    const val DEFAULT_LANGUAGE = "en-US"
+    const val DEFAULT_PAGE = 1
 }
