@@ -9,6 +9,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import dagger.multibindings.IntoSet
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -22,7 +23,7 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    @LoggingIOInterceptor
+    @IntoSet
     fun provideHttpLoggingInterceptor(): Interceptor = HttpLoggingInterceptor().apply {
         level = if (BuildConfig.DEBUG)
             HttpLoggingInterceptor.Level.BODY
@@ -32,18 +33,16 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    @ErrorIOInterceptor
+    @IntoSet
     fun provideErrorInterceptor(): Interceptor = ErrorInterceptor()
 
     @Singleton
     @Provides
     fun provideCallFactory(
-        @LoggingIOInterceptor loggingInterceptor: Interceptor,
-        @ErrorIOInterceptor errorInterceptor: Interceptor
+        interceptors: Set<@JvmSuppressWildcards Interceptor>,
     ): OkHttpClient {
         return OkHttpClient.Builder()
-            .addInterceptor(loggingInterceptor)
-            .addInterceptor(errorInterceptor)
+            .apply { interceptors.forEach(::addInterceptor) }
             .build()
     }
 
