@@ -48,7 +48,7 @@ private fun ScreenContent(
                     color = Color.Black
                 )
                 Spacer(modifier = Modifier.padding(8.dp))
-                Text(text = item.overview)
+                Text(text = item.posterURL)
             }
         }
 
