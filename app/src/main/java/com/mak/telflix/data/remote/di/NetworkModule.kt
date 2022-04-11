@@ -1,4 +1,4 @@
-package com.mak.telflix.di
+package com.mak.telflix.data.remote.di
 
 import com.mak.telflix.BuildConfig
 import com.mak.telflix.data.remote.ErrorInterceptor
@@ -13,9 +13,7 @@ import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
-import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
@@ -24,7 +22,7 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    @Named("LoggingInterceptor")
+    @LoggingIOInterceptor
     fun provideHttpLoggingInterceptor(): Interceptor = HttpLoggingInterceptor().apply {
         level = if (BuildConfig.DEBUG)
             HttpLoggingInterceptor.Level.BODY
@@ -34,14 +32,14 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    @Named("ErrorInterceptor")
+    @ErrorIOInterceptor
     fun provideErrorInterceptor(): Interceptor = ErrorInterceptor()
 
     @Singleton
     @Provides
     fun provideCallFactory(
-        @Named("LoggingInterceptor") loggingInterceptor: Interceptor,
-        @Named("ErrorInterceptor") errorInterceptor: Interceptor
+        @LoggingIOInterceptor loggingInterceptor: Interceptor,
+        @ErrorIOInterceptor errorInterceptor: Interceptor
     ): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
@@ -71,7 +69,6 @@ object NetworkModule {
     ): Retrofit.Builder = Retrofit.Builder()
         .baseUrl(BASE_URL)
         .addConverterFactory(moshiConverterFactory)
-        .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
         .client(client)
 
     @Singleton
