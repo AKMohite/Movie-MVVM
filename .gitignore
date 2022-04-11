@@ -12,5 +12,4 @@
 /captures
 .externalNativeBuild
 .cxx
-gradle.properties
 app/src/dev/resources
