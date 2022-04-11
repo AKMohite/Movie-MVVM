@@ -5,7 +5,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class PopularTvDTO(
+data class BaseTMDBDTO(
     @Json(name = "page")
     val page: Int,
     @Json(name = "total_pages")

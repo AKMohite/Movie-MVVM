@@ -1,5 +1,6 @@
 package com.mak.telflix.data.remote
 
+import com.mak.telflix.domain.util.TFConstants.API_GET_CURRENTLY_ON_AIR_TV
 import com.mak.telflix.domain.util.TFConstants.API_GET_POPULAR_TV
 import com.mak.telflix.domain.util.TFConstants.BASE_URL
 import com.mak.telflix.domain.util.TFConstants.QUERY_PAGE
@@ -21,6 +22,12 @@ class ErrorInterceptor: Interceptor {
                     val queryPage = httpUrl.queryParameter(QUERY_PAGE)
                     getResourceAsText("tmdb-api/popular-tv/success-$queryPage.json")
                 }
+
+                uri.contains("$BASE_URL$API_GET_CURRENTLY_ON_AIR_TV") -> {
+                    val queryPage = httpUrl.queryParameter(QUERY_PAGE)
+                    getResourceAsText("tmdb-api/on-air-tv/success-$queryPage.json")
+                }
+
                 else -> throw IllegalAccessError(
                     """MockInterceptor is only meant for Testing Purposes 
                 and bound to be used only with DEBUG mode

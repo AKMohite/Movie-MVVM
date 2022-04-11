@@ -1,7 +1,6 @@
 package com.mak.telflix.domain.interactors.home
 
 import com.mak.telflix.data.remote.IRemoteDataSource
-import com.mak.telflix.data.remote.dto.PopularTvDTO
 import com.mak.telflix.data.remote.dto.TvDTO
 import com.mak.telflix.domain.common.ResultWrapper
 import com.mak.telflix.domain.common.usecases.BaseUseCase
