@@ -5,11 +5,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.mak.telflix.data.remote.dto.TvDTO
 import com.mak.telflix.domain.interactors.home.PopularTVParams
 import com.mak.telflix.domain.interactors.home.RefreshPopularTV
 import com.mak.telflix.domain.paginate.Paginator
 import com.mak.telflix.domain.util.TFConstants.DEFAULT_PAGE
+import com.mak.telflix.domain.util.TFConstants.DEFAULT_PAGE_SIZE
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -38,7 +38,7 @@ class HomeViewModel @Inject constructor(
             state = state.copy(
                 items = state.items + items,
                 page = newKey,
-                endReached = items.isEmpty()
+                endReached = items.isEmpty() || items.size < DEFAULT_PAGE_SIZE
             )
         }
     )
@@ -54,11 +54,3 @@ class HomeViewModel @Inject constructor(
     }
 
 }
-
-data class HomeState(
-    val isLoading: Boolean = false,
-    val items: List<TvDTO> = emptyList(),
-    val error: String? = null,
-    val endReached: Boolean = false,
-    val page: Int = 1
-)

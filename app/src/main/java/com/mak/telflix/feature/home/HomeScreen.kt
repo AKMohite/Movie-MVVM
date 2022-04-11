@@ -33,7 +33,7 @@ private fun ScreenContent(
     ) {
         items(state.items.size) { index ->
             val item = state.items[index]
-            if (index >= state.items.size -1 && !state.endReached && state.isLoading) {
+            if (index >= state.items.size - 1 && !state.endReached && !state.isLoading) {
                 loadNextItems()
             }
 
