@@ -1,5 +1,7 @@
 package com.mak.telflix.data.remote
 
+import com.mak.telflix.domain.util.TFConstants
+import com.mak.telflix.domain.util.TFConstants.API_GET_AIRING_TODAY_TV
 import com.mak.telflix.domain.util.TFConstants.API_GET_CURRENTLY_ON_AIR_TV
 import com.mak.telflix.domain.util.TFConstants.API_GET_POPULAR_TV
 import com.mak.telflix.domain.util.TFConstants.BASE_URL
@@ -26,6 +28,11 @@ class ErrorInterceptor: Interceptor {
                 uri.contains("$BASE_URL$API_GET_CURRENTLY_ON_AIR_TV") -> {
                     val queryPage = httpUrl.queryParameter(QUERY_PAGE)
                     getResourceAsText("tmdb-api/on-air-tv/success-$queryPage.json")
+                }
+
+                uri.contains("$BASE_URL$API_GET_AIRING_TODAY_TV") -> {
+                    val queryPage = httpUrl.queryParameter(QUERY_PAGE)
+                    getResourceAsText("tmdb-api/today-airing-tv/success-$queryPage.json")
                 }
 
                 else -> throw IllegalAccessError(
