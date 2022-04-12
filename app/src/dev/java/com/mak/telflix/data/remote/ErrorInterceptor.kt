@@ -1,15 +1,14 @@
 package com.mak.telflix.data.remote
 
-import com.mak.telflix.domain.util.TFConstants
 import com.mak.telflix.domain.util.TFConstants.API_GET_AIRING_TODAY_TV
 import com.mak.telflix.domain.util.TFConstants.API_GET_CURRENTLY_ON_AIR_TV
 import com.mak.telflix.domain.util.TFConstants.API_GET_POPULAR_TV
 import com.mak.telflix.domain.util.TFConstants.BASE_URL
 import com.mak.telflix.domain.util.TFConstants.QUERY_PAGE
 import okhttp3.Interceptor
-import okhttp3.Response
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.Protocol
+import okhttp3.Response
 import okhttp3.ResponseBody.Companion.toResponseBody
 
 private const val SUCCESS_STATUS_CODE = 200

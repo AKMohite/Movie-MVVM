@@ -11,6 +11,21 @@ object TFConstants {
     const val QUERY_PAGE = "page"
 
 //    data:local
+    const val TABLE_TV = "tv_series"
+    const val C_ID = "id"
+    const val C_PAGE_NO = "page_no"
+    const val C_BACKDROP_URL = "backdrop_path"
+    const val C_FIRST_AIR_DATE = "first_air_date"
+    const val C_GENRE_IDS = "genre_ids"
+    const val C_NAME = "name"
+    const val C_ORIGIN_COUNTRY = "origin_country"
+    const val C_ORIGINAL_LANGUAGE = "original_language"
+    const val C_ORIGINAL_NAME = "original_name"
+    const val C_OVERVIEW = "overview"
+    const val C_POPULARITY = "popularity"
+    const val C_POSTER_PATH = "poster_path"
+    const val C_VOTE_AVG = "vote_average"
+    const val C_VOTE_COUNT = "vote_count"
 
 //    domain
     const val DEFAULT_LANGUAGE = "en-US"

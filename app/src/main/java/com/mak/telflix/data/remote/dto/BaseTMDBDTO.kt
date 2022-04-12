@@ -23,7 +23,7 @@ data class TvDTO(
     @Json(name = "first_air_date")
     val firstAirDate: String,
     @Json(name = "genre_ids")
-    val genreIds: List<Int>,
+    val genreIds: List<Int>?,
     @Json(name = "id")
     val id: Int,
     @Json(name = "name")
@@ -33,9 +33,9 @@ data class TvDTO(
     @Json(name = "original_language")
     val originalLanguage: String,
     @Json(name = "original_name")
-    val originalName: String,
+    val originalName: String?,
     @Json(name = "overview")
-    val overview: String,
+    val overview: String?,
     @Json(name = "popularity")
     val popularity: Double,
     @Json(name = "poster_path")
