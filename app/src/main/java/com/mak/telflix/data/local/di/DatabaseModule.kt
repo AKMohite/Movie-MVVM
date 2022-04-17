@@ -20,7 +20,7 @@ object DatabaseModule {
     fun provideTVDatabase(
         @ApplicationContext context: Context
     ): MyTelDB {
-        val builder = Room.databaseBuilder(context, MyTelDB::class.java, "series.db")
+        val builder = Room.databaseBuilder(context, MyTelDB::class.java, "tv_series.db")
             .fallbackToDestructiveMigration()
         if (Debug.isDebuggerConnected()) {
             builder.allowMainThreadQueries()
