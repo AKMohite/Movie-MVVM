@@ -26,7 +26,7 @@ import com.mak.telflix.domain.util.TFConstants.TABLE_TV
 data class TvEntity(
     @PrimaryKey(autoGenerate = false)
     @ColumnInfo(name = C_ID)
-    val id: Int,
+    override val id: Long,
     @ColumnInfo(name = C_PAGE_NO)
     val page: Int,
     @ColumnInfo(name = C_BACKDROP_URL)
@@ -53,7 +53,7 @@ data class TvEntity(
     val voteAverage: Double,
     @ColumnInfo(name = C_VOTE_COUNT)
     val voteCount: Int
-) {
+): BaseEntity {
     @Ignore
     val genres = genreIds?.split(",")?.mapNotNull { it.trim() } ?: emptyList()
 }

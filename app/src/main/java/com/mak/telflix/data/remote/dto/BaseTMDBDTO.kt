@@ -25,7 +25,7 @@ data class TvDTO(
     @Json(name = "genre_ids")
     val genreIds: List<Int>?,
     @Json(name = "id")
-    val id: Int,
+    val id: Long,
     @Json(name = "name")
     val name: String,
     @Json(name = "origin_country")

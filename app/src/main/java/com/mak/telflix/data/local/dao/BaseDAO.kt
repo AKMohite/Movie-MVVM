@@ -1,9 +1,10 @@
 package com.mak.telflix.data.local.dao
 
 import androidx.room.*
+import com.mak.telflix.data.local.entity.BaseEntity
 
 @Dao
-interface BaseDAO<T> {
+interface BaseDAO<T: BaseEntity> {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(entity: T)
