@@ -1,6 +1,6 @@
 package com.mak.telflix.data.remote
 
-import com.mak.telflix.domain.util.TFConstants.API_KEY
+import com.mak.telflix.BuildConfig
 import okhttp3.Interceptor
 import okhttp3.Response
 

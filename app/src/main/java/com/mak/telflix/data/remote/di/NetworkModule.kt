@@ -1,5 +1,6 @@
 package com.mak.telflix.data.remote.di
 
+import android.content.Context
 import com.mak.telflix.BuildConfig
 import com.mak.telflix.data.remote.ErrorInterceptor
 import com.mak.telflix.data.remote.TMDBAPIService
@@ -8,13 +9,16 @@ import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import dagger.multibindings.IntoSet
+import okhttp3.Cache
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import java.io.File
 import javax.inject.Singleton
 
 @Module
@@ -39,10 +43,12 @@ object NetworkModule {
     @Singleton
     @Provides
     fun provideCallFactory(
+        @ApplicationContext context: Context,
         interceptors: Set<@JvmSuppressWildcards Interceptor>,
     ): OkHttpClient {
         return OkHttpClient.Builder()
             .apply { interceptors.forEach(::addInterceptor) }
+            .cache(Cache(File(context.cacheDir, "api_cache"), 10L * 1024L * 1024L))
             .build()
     }
 
