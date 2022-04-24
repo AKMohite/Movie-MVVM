@@ -9,20 +9,20 @@ class LocalDataSource @Inject constructor(
 ): ILocalDataSource {
     private val tvDAO = db.tvDao()
 
-    override suspend fun insert(entities: List<TvEntity>) {
+    override suspend fun insertTv(entities: List<TvEntity>) {
         tvDAO.insertAll(entities)
     }
 
-    override suspend fun deleteAllEntries() {
-        TODO("Not yet implemented")
+    override suspend fun deleteAllTvEntries() {
+        tvDAO.deleteAll()
     }
 
-    override suspend fun getTvSeries(page: Int): Flow<List<TvEntity>> = tvDAO.getTvSeries(page)
+    override suspend fun getTvSeries(): Flow<List<TvEntity>> = tvDAO.getTvSeries()
 
 }
 
 interface ILocalDataSource {
-    suspend fun insert(entities: List<TvEntity>)
-    suspend fun deleteAllEntries()
-    suspend fun getTvSeries(page: Int): Flow<List<TvEntity>>
+    suspend fun insertTv(entities: List<TvEntity>)
+    suspend fun deleteAllTvEntries()
+    suspend fun getTvSeries(): Flow<List<TvEntity>>
 }

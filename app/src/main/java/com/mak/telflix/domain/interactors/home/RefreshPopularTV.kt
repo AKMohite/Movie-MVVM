@@ -19,8 +19,8 @@ class RefreshPopularTV @Inject constructor(
     override suspend operator fun invoke(params: PopularTVParams): ResultWrapper<List<DomainTV>> {
         return try {
             val response = remoteSource.getPopularTvSeries(params.language, params.page)
-            val entities = mapper.mapToEntities(response.results, response.page)
-            localSource.insert(entities)
+            val entities = mapper.mapToEntities(response.results)
+            localSource.insertTv(entities)
             val domainTv = mapper.mapToDomainResults(response.results)
             ResultWrapper.Success(domainTv)
         } catch (t: Throwable) {

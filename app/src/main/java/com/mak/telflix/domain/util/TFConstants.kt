@@ -11,8 +11,12 @@ object TFConstants {
     const val QUERY_PAGE = "page"
 
 //    data:local
+//    db tables
     const val TABLE_TV = "tv_series"
+    const val TABLE_POPULAR_TV = "popular_tv_series"
+//    table columns
     const val C_ID = "id"
+    const val C_SHOW_ID = "show_id"
     const val C_PAGE_NO = "page_no"
     const val C_BACKDROP_URL = "backdrop_path"
     const val C_FIRST_AIR_DATE = "first_air_date"

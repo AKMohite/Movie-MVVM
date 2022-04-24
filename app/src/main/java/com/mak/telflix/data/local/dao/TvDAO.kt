@@ -11,16 +11,19 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface TvDAO: BaseDAO<TvEntity> {
 
-    @Query("SELECT * FROM $TABLE_TV WHERE $C_PAGE_NO = :page")
-    fun getTvSeries(page: Int): Flow<List<TvEntity>>
+    @Query("SELECT * FROM $TABLE_TV")
+    fun getTvSeries(): Flow<List<TvEntity>>
 
-    @Query("DELETE FROM $TABLE_TV WHERE $C_PAGE_NO = :page")
+    @Query("DELETE FROM $TABLE_TV")
+    suspend fun deleteAll()
+
+    /*@Query("DELETE FROM $TABLE_TV WHERE $C_PAGE_NO = :page")
     suspend fun deletePage(page: Int)
 
     @Transaction
     suspend fun updatePage(page: Int, entities: List<TvEntity>) {
         deletePage(page)
         insertAll(entities)
-    }
+    }*/
 
 }

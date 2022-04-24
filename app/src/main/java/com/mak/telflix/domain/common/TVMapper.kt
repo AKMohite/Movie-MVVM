@@ -20,16 +20,15 @@ class TVMapper @Inject constructor() {
         )
     }
 
-    fun mapToEntities(results: List<TvDTO>, page: Int): List<TvEntity> {
+    fun mapToEntities(results: List<TvDTO>): List<TvEntity> {
         return results.map{ dto ->
-            mapToEntity(dto, page)
+            mapToEntity(dto)
         }
     }
 
-    private fun mapToEntity(dto: TvDTO, page: Int): TvEntity {
+    private fun mapToEntity(dto: TvDTO): TvEntity {
         return TvEntity(
             id = dto.id,
-            page = page,
             backdropPath = dto.backdropPath,
             firstAirDate = dto.firstAirDate,
             genreIds = dto.genreIds?.joinToString(","),
