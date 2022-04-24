@@ -1,6 +1,6 @@
 package com.mak.telflix.domain.interactors.home
 
-import com.mak.telflix.data.local.ILocalDataSource
+import com.mak.telflix.data.local.ITvDataSource
 import com.mak.telflix.data.remote.IRemoteDataSource
 import com.mak.telflix.domain.DomainTV
 import com.mak.telflix.domain.RefreshableTVUseCase
@@ -12,7 +12,7 @@ import javax.inject.Inject
 
 class RefreshPopularTV @Inject constructor(
     private val remoteSource: IRemoteDataSource,
-    private val localSource: ILocalDataSource,
+    private val tvSource: ITvDataSource,
     private val mapper: TVMapper
 ): RefreshableTVUseCase {
 
@@ -20,7 +20,7 @@ class RefreshPopularTV @Inject constructor(
         return try {
             val response = remoteSource.getPopularTvSeries(params.language, params.page)
             val entities = mapper.mapToEntities(response.results)
-            localSource.insertTv(entities)
+            tvSource.insertTv(entities)
             val domainTv = mapper.mapToDomainResults(response.results)
             ResultWrapper.Success(domainTv)
         } catch (t: Throwable) {

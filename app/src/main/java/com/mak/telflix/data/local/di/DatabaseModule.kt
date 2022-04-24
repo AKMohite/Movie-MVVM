@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Debug
 import androidx.room.Room
 import com.mak.telflix.data.local.MyTelDB
+import com.mak.telflix.data.local.dao.TvDAO
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -28,5 +29,14 @@ object DatabaseModule {
 
         return builder.build()
     }
+
+}
+
+@Module
+@InstallIn(SingletonComponent::class)
+object DAOModule {
+
+    @Provides
+    fun provideTvDao(db: MyTelDB) = db.tvDao()
 
 }
