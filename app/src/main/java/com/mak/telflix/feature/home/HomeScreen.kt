@@ -3,8 +3,9 @@ package com.mak.telflix.feature.home
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material.CircularProgressIndicator
-import androidx.compose.material.Text
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -44,8 +45,7 @@ private fun ScreenContent(
             ) {
                 Text(
                     text = item.name,
-                    fontSize = 20.sp,
-                    color = Color.Black
+                    style = MaterialTheme.typography.headlineMedium
                 )
                 Spacer(modifier = Modifier.padding(8.dp))
                 Text(text = item.posterURL)

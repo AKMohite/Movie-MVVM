@@ -13,3 +13,5 @@
 .externalNativeBuild
 .cxx
 app/src/dev/resources
+
+app-release.jks

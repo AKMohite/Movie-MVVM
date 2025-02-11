@@ -52,5 +52,5 @@ data class TvEntity(
     val voteCount: Int
 ): BaseEntity {
     @Ignore
-    val genres = genreIds?.split(",")?.mapNotNull { it.trim() } ?: emptyList()
+    val genres = genreIds?.split(",")?.map { it.trim() } ?: emptyList()
 }
