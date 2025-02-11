@@ -1,0 +1,45 @@
+package mak.app.nestedrecycler
+
+import androidx.lifecycle.ViewModel
+import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlin.coroutines.cancellation.CancellationException
+
+open class BaseViewModel(
+//    private val dispatcher: DispatcherProvider
+): ViewModel() {
+
+    /**
+     * This is the job for all coroutines started by this ViewModel.
+     * Cancelling this job will cancel all coroutines started by this ViewModel.
+     */
+    private val superVisorJob = SupervisorJob()
+
+    /**
+     * Handle exception to display a message instead of crashing
+     */
+    private val exceptionHandler = CoroutineExceptionHandler { _, exception ->
+        handleError(exception)
+    }
+
+    /**
+     * This is the main scope for all coroutines launched by this ViewModel.
+     * Since we pass [superVisorJob], you can cancel all coroutines
+     * launched by viewModelScope by calling [viewModelJob.cancel()]
+     */
+//    TODO don't pass concrete dispatchers
+    val uiScope = CoroutineScope(Dispatchers.Main + superVisorJob + exceptionHandler)
+
+    protected open fun handleError(exception: Throwable) {}
+
+    /**
+     * Cancel all coroutines when the ViewModel is cleared
+     */
+    override fun onCleared() {
+        superVisorJob.cancel(cause = CancellationException("viewModel cleared"))
+        super.onCleared()
+    }
+
+}
